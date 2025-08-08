@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mellohdev - Indie Game Developer</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #222222;
+      --header-bg: #f5f5f5;
+      --footer-bg: #f0f0f0;
+      --card-bg: #f9f9f9;
+      --link: #007acc;
+      --shadow: #ddd;
+    }
+
+    body.dark {
+      --bg: #0d0d0d;
+      --text: #f2f2f2;
+      --header-bg: #111;
+      --footer-bg: #111;
+      --card-bg: #1a1a1a;
+      --link: #00ccff;
+      --shadow: #000;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      text-align: center;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    header {
+      padding: 2rem 1rem;
+      background-color: var(--header-bg);
+      transition: background-color 0.3s;
+    }
+
+    header img {
+      width: 100px;
+      border-radius: 50%;
+    }
+
+    h1 {
+      margin: 1rem 0 0.5rem;
+      font-size: 2rem;
+    }
+
+    p.tagline {
+      color: var(--text);
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    .toggle-container {
+      margin-bottom: 1rem;
+    }
+
+    .toggle-btn {
+      background: none;
+      border: 1px solid var(--text);
+      color: var(--text);
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .toggle-btn:hover {
+      background-color: var(--card-bg);
+    }
+
+    .games {
+      padding: 2rem 1rem;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .game {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 0 10px var(--shadow);
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+    .game img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .game h2 {
+      margin: 0.5rem 0;
+    }
+
+    .game a {
+      color: var(--link);
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 0.5rem;
+    }
+
+    .game a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      padding: 2rem 1rem;
+      background-color: var(--footer-bg);
+      color: var(--text);
+      transition: background-color 0.3s;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="img/developer_icon.png" alt="Logo di Mellohdev" />
+    <h1>Mellohdev</h1>
+    <p class="tagline">Indie mobile game developer</p>
+
+    <div class="toggle-container">
+      <button class="toggle-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+    </div>
+  </header>
+
+  <section class="games">
+
+    <div class="game">
+      <img src="img/gameicon512.png" alt="Full Hexa" style="width: 200px; height: auto;">
+      <h2>Full Hexa</h2>
+      <p>Challenge opponents with dice: win by rolling the rarest combo!</p>
+      <a href="https://play.google.com/store/apps/details?id=com.mellohdev.fullhexa" target="_blank">Download on Google Play</a>
+    </div>
+
+  </section>
+
+  <footer>
+    <p>Contacts: <a href="mailto:mellohdev@gmail.com">mellohdev@gmail.com</a></p>
+    <p>&copy; 2025 Mellohdev</p>
+  </footer>
+
+  <script>
+  const body = document.body;
+  const btn = document.querySelector('.toggle-btn');
+
+  function setTheme(theme) {
+    if (theme === "dark") {
+      body.classList.add("dark");
+      btn.textContent = "☀️ Light Mode";
+    } else {
+      body.classList.remove("dark");
+      btn.textContent = "🌙 Dark Mode";
+    }
+    localStorage.setItem("theme", theme);
+  }
+
+  function toggleTheme() {
+    const isDark = body.classList.contains("dark");
+    setTheme(isDark ? "light" : "dark");
+  }
+
+  // Al caricamento della pagina, applica il tema salvato
+  const savedTheme = localStorage.getItem("theme") || "light";
+  setTheme(savedTheme);
+</script>
+
+
+</body>
+</html>
